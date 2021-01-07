@@ -21,7 +21,7 @@ client.login(email,password)
 print('\nLogged in \n')
 
 print('\nAvailable Communities')
-comlist= client.sub_clients(size=10)
+comlist= client.sub_clients(size=100)
 print('\n')
 y=0
 for name, id in zip(comlist.name,comlist.comId):
