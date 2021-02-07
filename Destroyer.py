@@ -1,8 +1,14 @@
+# -*-coding: utf-8 -*
 import amino
 from time import sleep
 import time
 import sys
 from os import system
+
+
+
+
+
 
 def clear(): 
     _ = system('clear')
@@ -11,13 +17,16 @@ client = amino.Client()
 chatroom = '0'
 email=sys.argv[1]
 password=sys.argv[2]
+# email="mececo6731@200cai.com"
+# password="idgaf123"
 comid='0'
 chatmenu=[]
 chatname={}
 commenu={}
-Mes="crash"*50000
+# Mes="crash"*50000
 
 client.login(email,password)
+# client.login_sid("AnsiMSI6IG51bGwsICIwIjogMiwgIjMiOiAwLCAiMiI6ICIwNzFmYzQzNS1lNGIxLTQ2MzctYTRmMi1jZmIxYmRiYTQ4MDgiLCAiNSI6IDE2MTI1Nzc0MDUsICI0IjogIjExMC4yMjQuMTkwLjE5NiIsICI2IjogMTAwfe736jenozaVF1AnS-FGL6UmPBK7")
 print('\nLogged in \n')
 
 print('\nAvailable Communities')
@@ -34,6 +43,23 @@ subclient = amino.SubClient(comId=comid, profile=client.profile)
 
 clear()
 print("\n")
+
+@client.callbacks.event("on_text_message")
+def on_text_message(data):
+    if data.comId==comid:
+        message="crash432"*50000
+        subclient.send_message(chatId=data.message.chatId,message=message,messageType=109)
+        subclient.send_message(chatId=data.message.chatId,message=decoy,messageType=109)
+
+@client.callbacks.event("on_sticker_message")
+def on_sticker_message(data):
+    if data.comId==comid:
+        message="crash432"*50000
+        subclient.send_message(chatId=data.message.chatId,message=message,messageType=109)
+        subclient.send_message(chatId=data.message.chatId,message=decoy,messageType=109)
+        
+
+
 
 chats = subclient.get_public_chat_threads(size=100)
 decoy=input('Enter decoy message >> ')
@@ -60,11 +86,12 @@ while True:
             link=input("http://aminoapps.com/p/")
             cobj=client.get_from_code(link).objectId
             subclient.join_chat(cobj)
-            subclient.send_message(chatId=cobj,message=Mes,messageType=115)
-            subclient.send_message(chatId=cobj,message=decoy,messageType=115)
+            message="crash432"*50000
+            subclient.send_message(chatId=cobj,message=message,messageType=109)
+            subclient.send_message(chatId=cobj,message=decoy,messageType=109)
             # tit=subclient.get_chat_thread(cobj).title
             print('\nchat Totalled')
-            subclient.leave_chat(cobj)
+            # subclient.leave_chat(cobj)
 
     
     if menu == -1:
@@ -73,18 +100,20 @@ while True:
         while True:
             for i in chatmenu:
                 subclient.join_chat(i)
-                subclient.send_message(chatId=i,message=Mes,messageType=115)
-                subclient.send_message(chatId=i,message=decoy,messageType=115)
+                message="crash432"*50000
+                subclient.send_message(chatId=i,message=message,messageType=109)
+                subclient.send_message(chatId=i,message=decoy,messageType=109)
                 print('\nchat Totalled', chatname[x])
-                subclient.leave_chat(i)
+                # subclient.leave_chat(i)
                 x+=1
     chatroom=chatmenu[menu]
     subclient.join_chat(chatroom)
     clear()
-    subclient.send_message(chatId=chatroom,message=Mes,messageType=115)
-    subclient.send_message(chatId=chatroom,message=decoy,messageType=115)
+    message="crash432"*60000
+    subclient.send_message(chatId=chatroom,message=message,messageType=109)
+    subclient.send_message(chatId=chatroom,message=decoy,messageType=109)
     print('\nchat Totalled', chatname[menu])
-    subclient.leave_chat(chatroom)
+    # subclient.leave_chat(chatroom)
     sleep(2)
     clear()
     
